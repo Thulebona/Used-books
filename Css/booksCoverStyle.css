@@ -3,11 +3,17 @@
 	font-size: 12px;
 	border:0;
 	width:30%;
-	cellspacing:10px;
+	
 }
-
+.cartDiv{
+  width: 100%;
+  float: left;
+  height: 35px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+}
 .topic_content {
-    position: relative;
+  position: relative;
 	font-family: tahoma;
 	font-size: 12px;
 	font-weight: bold;
@@ -16,7 +22,7 @@
 }
 .topic_head {
 	margin-top:4%;
-    position: relative;
+  position: relative;
 	font-family: tahoma;
 	font-size: 12px;
 	color: #000000;
