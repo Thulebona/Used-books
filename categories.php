@@ -16,58 +16,57 @@
     </ul>
 </div>
 
-	<div align="center" class="container">
-
-		<a href="index.php"><div >
+	<form align="center" class="container" action='index.php' method='post' accept-charset='UTF-8'  >
+		<a href="index.php"  ><button type='submit'  name='select' value="Business">
 		<span>Business</span>
 		<img src="images/category/business.png">
-		</div></a>
+		</button></a>
 
-		<a href="#"><div >
+		<a href="#"><button type='submit'  name='select' value="Sport Management">
 		<span>Sport Management		</span>
 		<img src="images/category/Sport Management.png">
-		</div></a>
+		</button></a>
 
-		<a href="#"><div >
+		<a href="#"><button type='submit'  name='select' value="Tourism">
 		<span>Tourism					</span>
 		<img src="images/category/Tourism.png">
-		</div></a>
+		</button></a>
 		
-		<a href="#"><div >
+		<a href="#"><button type='submit'  name='select' value="Informatics and design">
 		<span>Informatics and design	</span>
 		<img src="images/category/Informatics and design.png">
-		</div></a>
+		</button></a>
 
-		<a href="#"><div >
+		<a href="#"><button type='submit'  name='select' value="Accounting">
 		<span>Accounting</span>
 		<img src="images/category/Accounting.png">
-		</div></a>
+		</button></a>
 
-		<a href="#"><div >
+		<a href="#"><button type='submit'  name='select' value="Applied Science">
 		<span>Applied Science</span>
 		<img src="images/category/Applied Science.png">
-		</div></a>
+		</button></a>
 
-		<a href="#"><div >
+		<a href="#"><button type='submit'  name='select' value="Radiography">
 		<span>Radiography				</span>
 		<img src="images/category/Radiography.png">
-		</div></a>
+		</button></a>
 
-		<a href="#">
-		<div ><span>Health and Wellness		</span>
+		<a href="#"><button type='submit'  name='select' value="Health and Wellness">
+		<span>Health and Wellness		</span>
 		<img src="images/category/Health and Wellness.png">
-		</div></a>
+		</button></a>
 
-		<a href="#"><div >
+		<a href="#"><button type='submit'  name='select' value="Architecture">
 		<span>Architecture			</span>
 		<img src="images/category/Architecture.png">
-		</div></a>
+		</button></a>
 
-		<a href="#"><div >
+		<a href="#"><button type='submit'  name='select' value="Hospitality">
 		<span>Hospitality				</span>
 		<img src="images/category/Architecture.png">
-		</div></a>
-	</div>
+		</button></a>
+	</form>
 
 </body>
 </html>

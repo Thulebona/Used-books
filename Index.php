@@ -1,6 +1,6 @@
 <?php
 	require 'connector.php';
-	$result = mysqli_query($con,'select * from Books');
+ 	$result = mysqli_query($con,'SELECT * FROM Books WHERE category="'.$_POST['select'].'"');
  ?>
 
 <!doctype html>
@@ -20,6 +20,7 @@
        <li class='last'><a href='#'><span>Contact</span></a></li>
     </ul>
 </div>
+
 <table align="center" >
     <?php $i=0; 
 	while ($item = mysqli_fetch_object($result)) 
