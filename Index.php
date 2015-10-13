@@ -1,6 +1,6 @@
 <?php
 	require 'connector.php';
- 	$result = mysqli_query($con,'SELECT * FROM Books WHERE category="'.$_POST['select'].'"');
+ 	$resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE category="'.$_POST['select'].'"');
  ?>
 
 <!doctype html>
@@ -23,38 +23,44 @@
 
 <table align="center" >
     <?php $i=0; 
-	while ($item = mysqli_fetch_object($result)) 
-	{?>
 
+  while($general = mysqli_fetch_object($resultGeneral))
+  {
+
+    $resultSpecific = mysqli_query($con, 'SELECT * FROM bookspecific WHERE isbn="'.$general->isbn.'"');
+  	while ($item = mysqli_fetch_object($resultSpecific)) 
+  	{?>
         <td >
           <table class="topic_table">
           	<tr>
-              	<td class="topic_head">
-                   <?php echo'<p align= "center" ><font color="#000000">'.$item->title.'</font></p>';?>
-                      </a>
+                	<td class="topic_head">
+                     <?php echo'<p align= "center" ><font color="#000000">'.$general->title.'</font></p>';?>
+                        </a>
+                  </td>
+              </tr>
+              <tr>
+              	<td class="topic_content">
+              	   <div id="theimages" class="imgWrap" align="center">
+                         <?php echo '<img src="images/'.$general->imageName.'" alt="'.$general->imageName.'">';?>
+                          <pre class="imgDescription">
+                             <?php echo '<p ><strong><b>' .$general->title.'</strong></b><br>'.$general->isbn.'<br>R:' .$item->price.
+        			                '<br>' .$item->bookCondition. '<br>' .$item->status. '</p><br><br><br><br>'  ?>
+                              <input type="button" value="Add to Cart"  border="2px" class="cartDiv"/> 
+                             <!-- <input type="button" value="Remove from Cart"  border="2px" class="cartDiv"/>-->
+                          </pre>
+                    </div><br>
                 </td>
-            </tr>
-            <tr>
-            	<td class="topic_content">
-            	   <div id="theimages" class="imgWrap" align="center">
-                       <?php echo '<img src="images/'.$item->imageName.'" alt="'.$item->imageName.'">';?>
-                        <pre class="imgDescription">
-                           <?php echo '<p ><strong><b>' .$item->title.'</strong></b><br>'.$item->isbn.'<br>R:' .$item->price.
-      			                '<br>' .$item-> bookCondition. '<br>' .$item->status. '</p><br><br><br><br>'  ?>
-                            <input type="button" value="Add to Cart"  border="2px" class="cartDiv"/> 
-                           <!-- <input type="button" value="Remove from Cart"  border="2px" class="cartDiv"/>-->
-                        </pre>
-                  </div><br>
-              </td>
-            </tr>
-          </table>
-      </td>
-      <?php $i++;
-        if($i%5==0){   
-          echo "</tr>".PHP_EOL;
-			    $i=0;
-        }
-      }
+              </tr>
+            </table>
+        </td>
+
+        <?php $i++;
+          if($i%5==0){   
+            echo "</tr>".PHP_EOL;
+  			    $i=0;
+          }
+    }
+  }
 		  ?>
 </table>
 </body>
