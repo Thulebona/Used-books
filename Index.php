@@ -1,7 +1,17 @@
 <?php
-	require 'connector.php';
- 	$resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE category="'.$_POST['select'].'"');
- ?>
+	 require 'connector.php';
+   require 'navbar.php';
+
+  //check if the category is selected
+  if(isset($_POST['select'])) //if it is then select with category
+  {
+    $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE category="'.$_POST['select'].'"');
+  }
+  else //otherwise select all
+  {
+    $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral');
+  }
+?>
 
 <!doctype html>
 <html>
@@ -12,14 +22,8 @@
     <link rel="stylesheet" type="text/css" href="Css/navBar.css">
 </head>
 <body>
-<div id='cssmenu'>
-    <ul>
-       <li><a href='#'><span>Home</span></a></li>
-       <li class='active'><a href='categories.php'><span>Books</span></a></li>
-       <li><a href='#'><span>Upload a Book</span></a></li>
-       <li class='last'><a href='#'><span>Contact</span></a></li>
-    </ul>
-</div>
+
+<?php genNavBar(); ?>
 
 <table align="center" >
     <?php $i=0; 
@@ -43,8 +47,8 @@
               	   <div id="theimages" class="imgWrap" align="center">
                          <?php echo '<img src="images/'.$general->imageName.'" alt="'.$general->imageName.'">';?>
                           <pre class="imgDescription">
-                             <?php echo '<p ><strong><b>' .$general->title.'</strong></b><br>'.$general->isbn.'<br>R:' .$item->price.
-        			                '<br>' .$item->bookCondition. '<br>' .$item->status. '</p><br><br><br><br>'  ?>
+                             <?php echo '<p class = "imgText><strong><b>' .$general->title.'</strong></b><br>'.$general->isbn.'<br>R:' .$item->price.
+        			                '<br>' .$item->bookCondition. '<br>' .$item->status. '<br>' .$item->ownerUsername.'<br>' .$general->description.'</p><br><br><br><br>'  ?>
                               <input type="button" value="Add to Cart"  border="2px" class="cartDiv"/> 
                              <!-- <input type="button" value="Remove from Cart"  border="2px" class="cartDiv"/>-->
                           </pre>

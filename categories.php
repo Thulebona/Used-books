@@ -1,3 +1,7 @@
+<?php
+	require 'navbar.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +11,8 @@
 	  <link rel="stylesheet" type="text/css" href="Css/navBar.css">
 </head>
 <body>
-<div id='cssmenu'>
-    <ul>
-       <li><a href='#'><span>Home</span></a></li>
-       <li class='active'><a href='categories.php'><span>Books</span></a></li>
-       <li><a href='#'><span>Upload a Book</span></a></li>
-       <li class='last'><a href='#'><span>Contact</span></a></li>
-    </ul>
-</div>
+
+<?php genNavBar(); ?>
 
 	<form align="center" class="container" action='index.php' method='post' accept-charset='UTF-8'  >
 	<?php 
