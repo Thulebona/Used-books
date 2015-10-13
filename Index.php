@@ -25,6 +25,7 @@
     <?php $i=0; 
 	while ($item = mysqli_fetch_object($result)) 
 	{?>
+
         <td >
           <table class="topic_table">
           	<tr>
