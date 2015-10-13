@@ -5,6 +5,10 @@
   width:30%;
   
 }
+.outerBox{
+text-align: center;
+background-color: red;
+}
 .cartDiv{
   width: 100%;
   float: left;

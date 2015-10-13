@@ -1,8 +1,11 @@
 <?php
 	require 'connector.php';
- 	$result = mysqli_query($con,'SELECT * FROM Books WHERE category="'.$_POST['select'].'"');
+ 	$resultGeneral =  mysqli_query($con,'SELECT * FROM bookgeneral WHERE category="'.$_POST['select'].'"');
  ?>
+<!--$resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE category="'.$_POST['select'].'"');
 
+
+  $resultSpecific = mysqli_query($con, 'SELECT * FROM bookspecific WHERE isbn="'.resultGeneral->isbn.'"');-->
 <!doctype html>
 <html>
 <head>
@@ -17,13 +20,13 @@
        <li><a href='#'><span>Home</span></a></li>
        <li class='active'><a href='categories.php'><span>Books</span></a></li>
        <li><a href='#'><span>Upload a Book</span></a></li>
-       <li class='last'><a href='#'><span>Contact</span></a></li>
+       
     </ul>
 </div>
 
 <table align="center" >
     <?php $i=0; 
-	while ($item = mysqli_fetch_object($result)) 
+	while ($item = mysqli_fetch_object($resultGeneral)) 
 	{?>
 
         <td >
@@ -39,8 +42,7 @@
             	   <div id="theimages" class="imgWrap" align="center">
                        <?php echo '<img src="images/'.$item->imageName.'" alt="'.$item->imageName.'">';?>
                         <pre class="imgDescription">
-                           <?php echo '<p ><strong><b>' .$item->title.'</strong></b><br>'.$item->isbn.'<br>R:' .$item->price.
-      			                '<br>' .$item-> bookCondition. '<br>' .$item->status. '</p><br><br><br><br>'  ?>
+                           <?php echo '<p ><strong><b>' .$item->title.'</strong></b><br>'.$item->isbn.'<br>' .$item->description.'<br>' .$item->category. '</p><br><br><br><br>'  ?>
                             <input type="button" value="Add to Cart"  border="2px" class="cartDiv"/> 
                            <!-- <input type="button" value="Remove from Cart"  border="2px" class="cartDiv"/>-->
                         </pre>
