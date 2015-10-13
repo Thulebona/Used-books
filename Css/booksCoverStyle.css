@@ -1,34 +1,34 @@
 .topic_table {
-	font-family: tahoma;
-	font-size: 12px;
-	border:0;
-	width:30%;
-	
+  font-family: tahoma;
+  font-size: 12px;
+  border:0;
+  width:30%;
+  
 }
 .cartDiv{
   width: 100%;
   float: left;
   height: 35px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   border-radius: 10px;
 }
 .topic_content {
   position: relative;
-	font-family: tahoma;
-	font-size: 12px;
-	font-weight: bold;
-	color: #000000;
+  font-family: tahoma;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000000;
 
 }
 .topic_head {
-	margin-top:4%;
+  margin-top:4%;
   position: relative;
-	font-family: tahoma;
-	font-size: 12px;
-	color: #000000;
-	font-weight: bold;
-	height:10px;
-	width:210px;
+  font-family: tahoma;
+  font-size: 12px;
+  color: #000000;
+  font-weight: bold;
+  height:80px;
+  width:210px;
 }
 .imgWrap {
   position: relative;

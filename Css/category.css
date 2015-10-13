@@ -1,0 +1,30 @@
+.container{
+ width: 98%;
+ height: 98%;
+ position: absolute;
+ margin-bottom: 2%;
+
+}
+.container div{
+	display: inline-block;
+	padding-right: 2%;
+	margin-left: 2%;
+	margin-top: 3%;
+	/*0e2e38*/
+	height: 38%;
+	width: 20%;
+	color: #000000;
+	border-radius: 10px;
+    box-shadow: 2px 4px 13px #000000;
+}
+.container span{
+	color: blue;
+	font-size: 200%;
+	font-family: 'Tangerine', serif;
+}
+.container img{
+max-width:100%; 
+max-height:70%;
+margin:auto;
+display:block;
+}

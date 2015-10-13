@@ -15,13 +15,12 @@
 <div id='cssmenu'>
     <ul>
        <li><a href='#'><span>Home</span></a></li>
-       <li class='active'><a href='#'><span>Books</span></a></li>
+       <li class='active'><a href='categories.php'><span>Books</span></a></li>
        <li><a href='#'><span>Upload a Book</span></a></li>
        <li class='last'><a href='#'><span>Contact</span></a></li>
     </ul>
-
 </div>
-<table >
+<table align="center" >
     <?php $i=0; 
 	while ($item = mysqli_fetch_object($result)) 
 	{?>
@@ -40,10 +39,8 @@
                         <pre class="imgDescription">
                            <?php echo '<p ><strong><b>' .$item->title.'</strong></b><br>'.$item->isbn.'<br>R:' .$item->price.
       			                '<br>' .$item-> bookCondition. '<br>' .$item->status. '</p><br><br><br><br>'  ?>
-                            
                             <input type="button" value="Add to Cart"  border="2px" class="cartDiv"/> 
-                            <input type="button" value="Remove from Cart"  border="2px" class="cartDiv"/>
-                           
+                           <!-- <input type="button" value="Remove from Cart"  border="2px" class="cartDiv"/>-->
                         </pre>
                   </div><br>
               </td>
@@ -51,7 +48,7 @@
           </table>
       </td>
       <?php $i++;
-        if($i%6==0){   
+        if($i%5==0){   
           echo "</tr>".PHP_EOL;
 			    $i=0;
         }
