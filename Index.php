@@ -1,9 +1,8 @@
 <?php
-	
   session_start(); 
 
    require 'connector.php';
-   require 'navbar.php';
+   require 'header.php';
 
   //check if the category is selected
   if(isset($_POST['select'])) //if it is then select with category
@@ -21,8 +20,9 @@
 <head>
     <meta charset="utf-8">
     <title>Used Books</title>
-    <link rel="stylesheet" type="text/css" href="Css/booksCoverStyle.css">
-    <link rel="stylesheet" type="text/css" href="Css/navBar.css">
+    <link rel="stylesheet" type="text/css" href="css/booksCoverStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/navBar.css">
+    <link rel="stylesheet" type="text/css" href="css/loginBar.css">
 </head>
 <body>
 

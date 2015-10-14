@@ -1,0 +1,35 @@
+#loginDiv
+{
+	width: 100%;
+	/*background-color: #ff0000;*/
+	overflow: hidden;
+}
+
+#innerLoginDiv
+{
+	float: right;
+	   padding-top: 5px;
+    padding-right: 2px;
+    padding-bottom: 5px;
+    padding-left: 2px;
+}
+
+#buttonLogout
+{
+	
+}
+
+#usernameInput
+{
+	
+}
+
+#passwordInput
+{
+	
+}
+
+#buttonLogin
+{
+	
+}

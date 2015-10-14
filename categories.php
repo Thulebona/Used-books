@@ -1,14 +1,17 @@
 <?php
-	require 'navbar.php';
+	session_start(); 
+	require 'header.php';  
+	error_log('categories being built');
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Category</title>
-	<link rel="stylesheet" type="text/css" href="Css/category.css">
+	<link rel="stylesheet" type="text/css" href="css/category.css">
 	 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
-	  <link rel="stylesheet" type="text/css" href="Css/navBar.css">
+	  <link rel="stylesheet" type="text/css" href="css/navBar.css">
+	  <link rel="stylesheet" type="text/css" href="css/loginBar.css">
 </head>
 <body>
 

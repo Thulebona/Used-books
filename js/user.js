@@ -2,41 +2,75 @@
 
 function login()
 {
-/*
-
-//todo: get this working
 	//get data
 	var username = document.getElementById('usernameInput').value;
 	var password = document.getElementById('passwordInput').value;
 
+  if(!username || username == "")
+  {
+      alert("Invalid username");
+      return;
+  }
+  if(!password || password == "")
+  {
+      alert("Invalid password");
+      return;
+  }
+
+
 	var request = new XMLHttpRequest();
     request.open('POST', 'user.php', true);
 
-	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    request.setRequestHeader("username", username);
-    request.setRequestHeader("password", password);
+	request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send('action=login&username=' + username + '&password=' + password);
 
-    request.send();
-
-    if (request.status === 200) 
+    request.onload = function (e) 
     {
-    	*/
-      	//modify site user bar
-      	document.getElementById("loginDiv").innerHTML = "<button id = 'buttonLogout'> Logout </button>";
+       if (request.status === 200) 
+      {
+        //modify site user bar
+        document.getElementById("loginDiv").innerHTML =
+        "<div id = 'innerLoginDiv'>"+
+          "Welcome " + username + "! " +
+          "<button id = 'buttonLogout'> Logout </button>" +
+        "</div>";
+        document.getElementById("buttonLogout").addEventListener("click", logout);
+      }
+      else
+      {
+        alert("Login failed");
+      }
+  };
 
-      	document.getElementById("buttonLogout").addEventListener("click", logout);
-      	/*
-    }*/
+   
 }
 
 function logout()
 {
-	document.getElementById("loginDiv").innerHTML = 
-			"E-Mail:"+
-			"<input id = 'usernameInput' type='text' maxlength='30' value=''/>"+
-			"Password:"+
-			"<input id = 'passwordInput' type='password' maxlength='30' value=''/>"+
-			"<button id = 'buttonLogin'>  Login </button>";
+	var request = new XMLHttpRequest();
+  request.open('POST', 'user.php', true);
 
-	document.getElementById("buttonLogin").addEventListener("click", login);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  request.send('action=logout');
+
+  request.onload = function (e) 
+  {
+    if (request.status === 200) 
+    {
+        document.getElementById("loginDiv").innerHTML = 
+        "<div id = 'innerLoginDiv'>"+
+          "E-Mail:"+
+          "<input id = 'usernameInput' type='text' maxlength='30' value=''/>"+
+          "Password:"+
+          "<input id = 'passwordInput' type='password' maxlength='30' value=''/>"+
+          "<button id = 'buttonLogin'>  Login </button>"+
+        "</div>";
+
+        document.getElementById("buttonLogin").addEventListener("click", login);
+    }
+    else
+    {
+        alert("Logout failed");
+    }
+  };
 }
