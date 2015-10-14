@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<?php genNavBar(); ?>
+<?php genHeader(); ?>
 
 	<form align="center" class="container" action='index.php' method='post' accept-charset='UTF-8'  >
 	<?php 

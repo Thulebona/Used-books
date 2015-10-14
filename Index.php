@@ -1,5 +1,8 @@
 <?php
-	 require 'connector.php';
+	
+  session_start(); 
+
+   require 'connector.php';
    require 'navbar.php';
 
   //check if the category is selected
@@ -23,7 +26,7 @@
 </head>
 <body>
 
-<?php genNavBar(); ?>
+<?php genHeader(); ?>
 
 <table align="center" >
     <?php $i=0; 
@@ -47,7 +50,7 @@
               	   <div id="theimages" class="imgWrap" align="center">
                          <?php echo '<img src="images/'.$general->imageName.'" alt="'.$general->imageName.'">';?>
                           <pre class="imgDescription">
-                             <?php echo '<p class = "imgText><strong><b>' .$general->title.'</strong></b><br>'.$general->isbn.'<br>R:' .$item->price.
+                             <?php echo '<p class = "imgText"><strong><b>' .$general->title.'</strong></b><br>'.$general->isbn.'<br>R:' .$item->price.
         			                '<br>' .$item->bookCondition. '<br>' .$item->status. '<br>' .$item->ownerUsername.'<br>' .$general->description.'</p><br><br><br><br>'  ?>
                               <input type="button" value="Add to Cart"  border="2px" class="cartDiv"/> 
                              <!-- <input type="button" value="Remove from Cart"  border="2px" class="cartDiv"/>-->
