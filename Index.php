@@ -52,7 +52,7 @@
                           </div>
                           <div class="topic_content">
                             <div id="theimages" class="imgWrap" align="center">
-                                 <?php echo '<img src="images/'.$general->imageName.'" alt="'.$general->imageName.'">';?>
+                                 <?php echo '<img src="images/'.$item->imageName.'" alt="images/'.$item->imageName.'">';?>
                                   <pre class="imgDescription">
                                      <?php echo '<p class = "imgText"><strong><b>' .$general->title.'</strong></b><br>'.$general->isbn.'<br>R:' .$item->price.
                                       '<br>' .$item->bookCondition. '<br>' .$item->status. '<br>' .$item->ownerUsername.'<br>' .$general->description.'</p><br><br><br>'  ?>
@@ -92,6 +92,7 @@
               
               echo '<tr>';
                 if($value>0){
+<<<<<<< HEAD
                   if(substr($key,0,5)=='cart_'){
                    $bookId = substr($key,5,strlen($key)-5);
                    $getBook = 
@@ -99,6 +100,12 @@
                    } 
                   //echo '<td>'.$result->price.'</td>'; 
                  // echo '<td align="center"> <a href="#"><img src="images/remove.png"></a></td>';
+=======
+                //  if(su)
+                  echo '<td>'.$general->title.'</td>';
+                  echo '<td>'.$result->price.'</td>'; 
+                  echo '<td align="center"> <a href="#"><img src="images/remove.png"></a></td>';
+>>>>>>> 3752dca249e6cbdf3080fa216b7c11c8f49860a0
                   }
               echo '</tr>';
               }
@@ -117,9 +124,8 @@
     
     </form>
 
-      </div>
+  </div> <!--shopping cart div -->
   </div>
-
 
 </body>
 </html>
