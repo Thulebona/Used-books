@@ -48,7 +48,7 @@
               <tr>
               	<td class="topic_content">
               	   <div id="theimages" class="imgWrap" align="center">
-                         <?php echo '<img src="images/'.$general->imageName.'" alt="'.$general->imageName.'">';?>
+                         <?php echo '<img src="images/'.$item->imageName.'" alt="images/'.$item->imageName.'">';?>
                           <pre class="imgDescription">
                              <?php echo '<p class = "imgText"><strong><b>' .$general->title.'</strong></b><br>'.$general->isbn.'<br>R:' .$item->price.
         			                '<br>' .$item->bookCondition. '<br>' .$item->status. '<br>' .$item->ownerUsername.'<br>' .$general->description.'</p><br><br><br><br>'  ?>
