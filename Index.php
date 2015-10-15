@@ -2,6 +2,7 @@
   session_start();
   require 'connector.php';
   require 'header.php';
+
   //check if the category is selected
   if(isset($_POST['select'])) //if it is then select with category
   {
@@ -26,13 +27,14 @@
 <!doctype html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>Used Books</title>
     <link rel="stylesheet" type="text/css" href="css/booksCoverStyle.css">
     <link rel="stylesheet" type="text/css" href="css/navBar.css">
     <link rel="stylesheet" type="text/css" href="css/loginBar.css">
 </head>
 <body>
 <?php genHeader('index'); ?>
-
   <div  class="container">
       <div class="tableDiv">
           <?php 
@@ -42,7 +44,6 @@
                $resultSpecific = mysqli_query($con, 'SELECT * FROM bookspecific WHERE isbn="'.$general->isbn.'"');
                while ($item = mysqli_fetch_object($resultSpecific)) 
                {?>
-
                    <div class="tableWrapper" >
                      <div class="topic_table">
                           <div class="topic_head">
@@ -116,6 +117,7 @@
 
       </div>
   </div>
+
 
 </body>
 </html>
