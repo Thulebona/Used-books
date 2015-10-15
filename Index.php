@@ -26,7 +26,7 @@
 </head>
 <body>
 
-<?php genHeader(); ?>
+<?php genHeader('index'); ?>
 
 <table align="center" >
     <?php $i=0; 

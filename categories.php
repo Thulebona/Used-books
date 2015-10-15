@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<?php genHeader(); ?>
+<?php genHeader('categories'); ?>
 
 	<form align="center" class="container" action='index.php' method='post' accept-charset='UTF-8'  >
 	<?php 

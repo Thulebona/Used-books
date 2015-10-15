@@ -59,7 +59,7 @@ function logout()
     {
         document.getElementById("loginDiv").innerHTML = 
         "<div id = 'innerLoginDiv'>"+
-          "E-Mail:"+
+          "Username:"+
           "<input id = 'usernameInput' type='text' maxlength='30' value=''/>"+
           "Password:"+
           "<input id = 'passwordInput' type='password' maxlength='30' value=''/>"+
@@ -73,4 +73,12 @@ function logout()
         alert("Logout failed");
     }
   };
+}
+
+function loggedIn()
+{
+   //cheat by getting looking to see if the login button exists... is this open to exploit? 
+    var button = document.getElementById("buttonLogout") ;
+    if(button === null) return false;
+    else return true;
 }

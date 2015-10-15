@@ -1,9 +1,9 @@
 <?php
 
-function genHeader()
+function genHeader($selectedPage)
 {
 	genUserBar();
-	genNavBar();
+	genNavBar($selectedPage);
 }
 
 function genUserBar()
@@ -11,8 +11,6 @@ function genUserBar()
 	if(loggedIn())
 	{
 	?>
-
-
 		<!--including script here bad? where should we then?-->
 		<script src="js/user.js"></script>
 			<div id = "loginDiv">
@@ -42,18 +40,57 @@ function genUserBar()
 	}
 }
 
-function genNavBar()
+function genNavBar($selectedPage)
 {
-	?>
-	<div id='cssmenu'>
-    	<ul>
-       		<li class='active'><a href='categories.php'><span>Books</span></a></li>
-       		<li><a href='#'><span>Upload a Book</span></a></li>
-       		<li class='last'><a href='#'><span>Contact</span></a></li>
-   	 	</ul>
-	</div>
+	switch ($selectedPage) 
+	{
+		case 'index':
 
-	<?php
+		?>
+			<div id='cssmenu'>
+    				<ul>
+       					<li><a href='categories.php'><span>Books</span></a></li>
+       					<li><a href='upload.php'><span>Upload a Book</span></a></li>
+   	 				</ul>
+				</div>
+		<?php
+			break;
+
+		case 'categories':
+
+		?>
+			<div id='cssmenu'>
+    				<ul>
+       					<li class='active'><a href='categories.php'><span>Books</span></a></li>
+       					<li><a href='upload.php'><span>Upload a Book</span></a></li>
+   	 				</ul>
+				</div>
+		<?php
+			break;
+
+		case 'upload':
+		?>
+			<div id='cssmenu'>
+    				<ul>
+       					<li><a href='categories.php'><span>Books</span></a></li>
+       					<li class='active'><a href='upload.php'><span>Upload a Book</span></a></li>
+   	 				</ul>
+				</div>
+				<?php
+			break;
+		
+		default:
+			?>
+				<div id='cssmenu'>
+    				<ul>
+       					<li class='active'><a href='categories.php'><span>Books</span></a></li>
+       					<li><a href='upload.php'><span>Upload a Book</span></a></li>
+   	 				</ul>
+				</div>
+			<?php
+			break;
+	}
+	
 }
 
 require 'userFunctions.php'

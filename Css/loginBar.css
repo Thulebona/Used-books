@@ -1,35 +1,40 @@
 #loginDiv
 {
 	width: 100%;
-	/*background-color: #ff0000;*/
 	overflow: hidden;
 }
 
 #innerLoginDiv
 {
 	float: right;
-	   padding-top: 5px;
-    padding-right: 2px;
-    padding-bottom: 5px;
-    padding-left: 2px;
+	padding-top: 0.5em;
+    padding-right: 0.1em;
+    padding-bottom: 0.5em;
+    padding-left: 0.1em;
 }
 
 #buttonLogout
 {
-	
+    padding-right: 0.1em;
+    padding-left: 0.1em;
 }
 
 #usernameInput
 {
-	
+	width: 5em;
+    padding-right: 0.1em;;
+    padding-left: 0.1em;;
 }
 
 #passwordInput
 {
-	
+	width: 5em;
+    padding-right: 0.1em;
+    padding-left: 0.1em;
 }
 
 #buttonLogin
 {
-	
+    padding-right: 0.1em;
+    padding-left: 0.1em;
 }
