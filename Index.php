@@ -1,5 +1,6 @@
 <?php
   session_start();
+  //session_destroy();
   require 'connector.php';
   require 'header.php';
 
@@ -80,23 +81,24 @@
             </tr>
            
             <?php
-             if (isset($_GET['id'])) {
-              $bookspecific = mysqli_query($con,'SELECT * FROM bookspecific WHERE id="'.$_GET['id'].'"');
-              $result = mysqli_fetch_object($bookspecific);
-              $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE isbn="'.$result->isbn.'"');
-              $general = mysqli_fetch_object($resultGeneral);
-            
-              $_SESSION['cart_'.$result->isbn]+=1;
-              $_SESSION['cartId_'.$result->id]+=1;
+             if (isset($_GET['id'])) {    
+             // $bookspecific = mysqli_query($con,'SELECT * FROM bookspecific WHERE id="'.$_GET['id'].'"');
+             // $result = mysqli_fetch_object($bookspecific);
+             // $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE isbn="'.$result->isbn.'"');
+             // $general = mysqli_fetch_object($resultGeneral);  
+              $_SESSION['cart_'.$_GET['id']]+=1;
 
               foreach ($_SESSION as $key => $value) {
-                # code... 
+              
               echo '<tr>';
                 if($value>0){
-                  if(su)
-                  echo '<td>'.$general->title.'</td>';
-                  echo '<td>'.$result->price.'</td>'; 
-                  echo '<td align="center"> <a href="#"><img src="images/remove.png"></a></td>';
+                  if(substr($key,0,5)=='cart_'){
+                   $bookId = substr($key,5,strlen($key)-5);
+                   $getBook = 
+                   //echo '<td>Hello world</td>';
+                   } 
+                  //echo '<td>'.$result->price.'</td>'; 
+                 // echo '<td align="center"> <a href="#"><img src="images/remove.png"></a></td>';
                   }
               echo '</tr>';
               }
