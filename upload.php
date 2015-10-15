@@ -30,11 +30,11 @@
 		 if(count($generalWithISBN) < 1)
 		 {
 		 	//isbn imageName description
-		 	//mysqli_query($con,'INSERT INTO bookgeneral VALUES("'$_POST['isbn'])'", )';
+		 	mysqli_query($con,'INSERT INTO bookgeneral VALUES("'$_POST['isbn'])'","'$_POST['title'])'","'$_POST['description'])'","'$_POST['category'])'"');
 		 }
 		 else
 		 {
-
+		 	//copy image to directory
 		 }
 
 
