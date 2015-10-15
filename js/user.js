@@ -32,6 +32,7 @@ function login()
         document.getElementById("loginDiv").innerHTML =
         "<div id = 'innerLoginDiv'>"+
           "Welcome " + username + "! " +
+          "<button id = 'buttonMyBooks'> My Books </button>" +
           "<button id = 'buttonLogout'> Logout </button>" +
         "</div>";
         document.getElementById("buttonLogout").addEventListener("click", logout);

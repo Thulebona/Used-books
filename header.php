@@ -16,6 +16,7 @@ function genUserBar()
 			<div id = "loginDiv">
 				<div id = "innerLoginDiv">
 					Welcome <?php echo getLoggedInUsername() ?>!
+					<button id = 'buttonMyBooks'>My Books</button>
 					<button id = 'buttonLogout' onclick = "logout()"> Logout </button>
 				</div>
 			</div>
