@@ -50,6 +50,7 @@ function genNavBar($selectedPage)
 		?>
 			<div id='cssmenu'>
     				<ul>
+    					<li class='active'><a href='index.php'><span>Home</span></a></li>
        					<li><a href='categories.php'><span>Books</span></a></li>
        					<li><a href='upload.php'><span>Upload a Book</span></a></li>
    	 				</ul>
@@ -62,6 +63,7 @@ function genNavBar($selectedPage)
 		?>
 			<div id='cssmenu'>
     				<ul>
+    					<li><a href='index.php'><span>Home</span></a></li>
        					<li class='active'><a href='categories.php'><span>Books</span></a></li>
        					<li><a href='upload.php'><span>Upload a Book</span></a></li>
    	 				</ul>
@@ -73,6 +75,7 @@ function genNavBar($selectedPage)
 		?>
 			<div id='cssmenu'>
     				<ul>
+    					<li><a href='index.php'><span>Home</span></a></li>
        					<li><a href='categories.php'><span>Books</span></a></li>
        					<li class='active'><a href='upload.php'><span>Upload a Book</span></a></li>
    	 				</ul>
@@ -84,6 +87,7 @@ function genNavBar($selectedPage)
 			?>
 				<div id='cssmenu'>
     				<ul>
+    					<li><a href='index.php'><span>Home</span></a></li>
        					<li class='active'><a href='categories.php'><span>Books</span></a></li>
        					<li><a href='upload.php'><span>Upload a Book</span></a></li>
    	 				</ul>

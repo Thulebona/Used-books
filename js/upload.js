@@ -18,6 +18,7 @@ function validateUpload()
 	}
 	else
 	{
+		document.getElementById("uploadForm").action = "upload.php";
 		document.getElementById("uploadForm").submit();
 		return true;
 	}
