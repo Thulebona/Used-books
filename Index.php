@@ -1,7 +1,9 @@
 <?php
-  session_start();
+  //session_start();
+  //session_destroy();
   require 'connector.php';
   require 'header.php';
+  require 'cart.php';
 
   //check if the category is selected
   if(isset($_POST['select'])) //if it is then select with category
@@ -21,7 +23,6 @@
   {
     $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral');
   }
-
 ?>
 
 <!doctype html>
@@ -51,7 +52,7 @@
                           </div>
                           <div class="topic_content">
                             <div id="theimages" class="imgWrap" align="center">
-                                 <?php echo '<img src="images/'.$item->imageName.'" alt="images/'.$item->imageName.'">';?>
+                                 <?php echo '<img src="images/'.$item->imageName.'" alt="'.$item->imageName.'">';?>
                                   <pre class="imgDescription">
                                      <?php echo '<p class = "imgText"><strong><b>' .$general->title.'</strong></b><br>'.$general->isbn.'<br>R:' .$item->price.
                                       '<br>' .$item->bookCondition. '<br>' .$item->status. '<br>' .$item->ownerUsername.'<br>' .$general->description.'</p><br><br><br>'  ?>
@@ -78,34 +79,7 @@
               <th>delete </th>
               </thead>
             </tr>
-           
-            <?php
-             if (isset($_GET['id'])) {
-              $bookspecific = mysqli_query($con,'SELECT * FROM bookspecific WHERE id="'.$_GET['id'].'"');
-              $result = mysqli_fetch_object($bookspecific);
-              $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE isbn="'.$result->isbn.'"');
-              $general = mysqli_fetch_object($resultGeneral);
-            
-              $_SESSION['cart_'.$result->isbn]+=1;
-              $_SESSION['cartId_'.$result->id]+=1;
-
-              foreach ($_SESSION as $key => $value) {
-                # code... 
-              echo '<tr>';
-                if($value>0){
-                //  if(su)
-                  echo '<td>'.$general->title.'</td>';
-                  echo '<td>'.$result->price.'</td>'; 
-                  echo '<td align="center"> <a href="#"><img src="images/remove.png"></a></td>';
-                  }
-              echo '</tr>';
-              }
-              
-
-              
-               }
-              ?>              
-           
+              <?php cart(); ?>             
           </table>
           <div class="cart-total">
           <b>Total Charges:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> R<span>&nbsp;&nbsp;0</span>
@@ -115,8 +89,9 @@
     
     </form>
 
-  </div> <!--shopping cart div -->
+      </div>
   </div>
+
 
 </body>
 </html>
