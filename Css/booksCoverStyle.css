@@ -93,8 +93,10 @@
   opacity: 1;
 }
 table{
+  border-spacing: 4px;
   width: 100%;
   text-align: left;
+  height: 70%;
   /*word-wrap: break-word;*/
 }
 .cart-total{
@@ -111,6 +113,7 @@ table{
 }
 #cart_form{
   margin-top: 18%;
+  height: 70%;
 }
 .checkOut{
     background: none repeat scroll 0 0 #AD7B05;

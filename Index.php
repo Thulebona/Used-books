@@ -1,7 +1,4 @@
 <?php
-  //session_start();
-  //session_destroy();
-  require 'connector.php';
   require 'header.php';
   require 'cart.php';
 
@@ -11,12 +8,10 @@
     $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE category="'.$_POST['select'].'"');
   }
   else if (isset($_GET['id'])) {
-      $bookspecific = mysqli_query($con,'SELECT * FROM bookspecific WHERE id="'.$_GET['id'].'"');
+      $bookspecific = mysqli_query($con,'SELECT isbn FROM bookspecific WHERE id="'.$_GET['id'].'"');
       $result = mysqli_fetch_object($bookspecific);
-
-      $bookIsbn = mysqli_query($con,'SELECT * FROM bookgeneral WHERE isbn="'.$result->isbn.'"');  
+      $bookIsbn = mysqli_query($con,'SELECT category FROM bookgeneral WHERE isbn="'.$result->isbn.'"');  
       $general = mysqli_fetch_object($bookIsbn);
-
       $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE category="'.$general->category.'"');
    }
   else //otherwise select all
@@ -30,9 +25,9 @@
 <head>
     <meta charset="utf-8">
     <title>Used Books</title>
-    <link rel="stylesheet" type="text/css" href="css/booksCoverStyle.css">
-    <link rel="stylesheet" type="text/css" href="css/navBar.css">
-    <link rel="stylesheet" type="text/css" href="css/loginBar.css">
+    <link rel="stylesheet" type="text/css" href="Css/booksCoverStyle.css">
+    <link rel="stylesheet" type="text/css" href="Css/navBar.css">
+    <link rel="stylesheet" type="text/css" href="Css/loginBar.css">
 </head>
 <body>
 <?php genHeader('index'); ?>
@@ -71,12 +66,13 @@
       <div class="shoppingCartDiv">
 
         <form action="#" id="cart_form" name="cart_form">
-          <table >
-            <tr>
+          <table>
+            <tr >
             <thead>
-              <th>Book Name</th>
-              <th>Book price</th>
-              <th>delete </th>
+              <th>Price</th>
+              <th>Qu</th>
+              <th>Title</th>
+              <th></th>
               </thead>
             </tr>
               <?php cart(); ?>             
