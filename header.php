@@ -16,7 +16,7 @@ function genUserBar()
 			<div id = "loginDiv">
 				<div id = "innerLoginDiv">
 					Welcome <?php echo getLoggedInUsername() ?>!
-					<button id = 'buttonMyBooks'>My Books</button>
+					<button id = 'buttonMyBooks' onClick="document.location.href='mybooks.php'">My Books</button>
 					<button id = 'buttonLogout' onclick = "logout()"> Logout </button>
 				</div>
 			</div>
@@ -50,6 +50,7 @@ function genNavBar($selectedPage)
 		?>
 			<div id='cssmenu'>
     				<ul>
+    					<li class='active'><a href='index.php'><span>Home</span></a></li>
        					<li><a href='categories.php'><span>Books</span></a></li>
        					<li><a href='upload.php'><span>Upload a Book</span></a></li>
    	 				</ul>
@@ -62,6 +63,7 @@ function genNavBar($selectedPage)
 		?>
 			<div id='cssmenu'>
     				<ul>
+    					<li><a href='index.php'><span>Home</span></a></li>
        					<li class='active'><a href='categories.php'><span>Books</span></a></li>
        					<li><a href='upload.php'><span>Upload a Book</span></a></li>
    	 				</ul>
@@ -73,6 +75,7 @@ function genNavBar($selectedPage)
 		?>
 			<div id='cssmenu'>
     				<ul>
+    					<li><a href='index.php'><span>Home</span></a></li>
        					<li><a href='categories.php'><span>Books</span></a></li>
        					<li class='active'><a href='upload.php'><span>Upload a Book</span></a></li>
    	 				</ul>
@@ -84,7 +87,8 @@ function genNavBar($selectedPage)
 			?>
 				<div id='cssmenu'>
     				<ul>
-       					<li class='active'><a href='categories.php'><span>Books</span></a></li>
+    					<li><a href='index.php'><span>Home</span></a></li>
+       					<li><a href='categories.php'><span>Books</span></a></li>
        					<li><a href='upload.php'><span>Upload a Book</span></a></li>
    	 				</ul>
 				</div>
