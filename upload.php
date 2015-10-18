@@ -52,7 +52,7 @@
 
 		<label for="category">Category</label> <br>
 		<select class = "uploadFormItem" name = "category">
-  			<option value="Buisiness">Buisiness</option>
+  			<option value="Business">Business</option>
   			<option value="Sport Management">Sport Management</option>
   			<option value="Tourism">Tourism</option>
   			<option value="Informatics And Design">Informatics And Design</option>
@@ -144,7 +144,7 @@
 			if($_FILES['datafile']['error'] === UPLOAD_ERR_OK)
 			{
 
-				$specificSQL = 'INSERT INTO bookspecific (isbn, price, bookCondition, status, ownerUsername, imageName) '.'VALUES("'.$_POST['isbn'].'",'.$_POST['price'].',"'.$_POST['condition'].'","availible","'.$username.'","'.$newname.'");';
+				$specificSQL = 'INSERT INTO bookspecific (isbn, price, bookCondition, status, ownerUsername, imageName) '.'VALUES("'.$_POST['isbn'].'",'.$_POST['price'].',"'.$_POST['condition'].'","available","'.$username.'","'.$newname.'");';
 
 			 	error_log('SPECIFIC SQL: '.$specificSQL, 0);
 

@@ -5,7 +5,11 @@
 		 private $title;
 		 private $isbn;
 		 private $quantity;
+		 private $username;
 		 private $price =0;
+		 private $totalPrice=0;
+
+
 
 		function setBookID($id){
 			$this->id = $id;
@@ -25,7 +29,6 @@
 		function getQuantity(){
 			return $this->quantity;
 		}
-
 		function getBookIsbn(){
 			return $this->isbn;
 		}
@@ -38,5 +41,18 @@
 		function getBookPrice(){
 			return $this->price;
 		}
+		function setBookTotPrice($totalPrice){
+			$this->totalPrice=$totalPrice;
+		}
+		function getBookTotPrice(){
+			return $this->totalPrice;
+		}
+		function setUsername($username){
+			$this->username=$username;
+		}
+		function getUsername(){
+			return $this->username;
+		}
+
 	}
  ?>

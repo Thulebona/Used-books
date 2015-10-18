@@ -5,16 +5,22 @@
   //check if the category is selected
   if(isset($_POST['select'])) //if it is then select with category
   {
-    $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE category="'.$_POST['select'].'"');
+    $resultGeneral = mysqli_query($con,"SELECT * FROM bookgeneral WHERE category='".$_POST['select']."'");
   }
   else if (isset($_GET['id'])) {
-      $bookspecific = mysqli_query($con,'SELECT isbn FROM bookspecific WHERE id="'.$_GET['id'].'"');
+      $bookspecific = mysqli_query($con,"SELECT isbn FROM bookspecific WHERE id='".$_GET['id']."'");
       $result = mysqli_fetch_object($bookspecific);
       $bookIsbn = mysqli_query($con,'SELECT category FROM bookgeneral WHERE isbn="'.$result->isbn.'"');  
       $general = mysqli_fetch_object($bookIsbn);
       $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE category="'.$general->category.'"');
    }
-  else //otherwise select all
+  else if (isset($_GET['delete']))//otherwise select all
+  {
+      $bookIsbn = mysqli_query($con,'SELECT category FROM bookgeneral WHERE isbn="'.$_GET['delete'].'"');  
+      $general = mysqli_fetch_object($bookIsbn);
+      $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral WHERE category="'.$general->category.'"');
+  }
+  else
   {
     $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral');
   }
@@ -37,7 +43,7 @@
             $i=0; 
             while($general = mysqli_fetch_object($resultGeneral))
             {
-               $resultSpecific = mysqli_query($con, 'SELECT * FROM bookspecific WHERE isbn="'.$general->isbn.'"');
+               $resultSpecific = mysqli_query($con, "SELECT * FROM bookspecific WHERE isbn='".$general->isbn."'and status='available'");
                while ($item = mysqli_fetch_object($resultSpecific)) 
                {?>
                    <div class="tableWrapper" >
@@ -47,13 +53,12 @@
                           </div>
                           <div class="topic_content">
                             <div id="theimages" class="imgWrap" align="center">
-                                 <?php echo '<img src="images/'.$item->imageName.'" alt="'.$item->imageName.'">';?>
-                                  <pre class="imgDescription">
-                                     <?php echo '<p class = "imgText"><strong><b>' .$general->title.'</strong></b><br>'.$general->isbn.'<br>R:' .$item->price.
-                                      '<br>' .$item->bookCondition. '<br>' .$item->status. '<br>' .$item->ownerUsername.'<br>' .$general->description.'</p><br><br><br>'  ?>
-                                     <a href="index.php?id=<?php echo $item->id; ?>"><input  type="button" name="addTocart" value="Add to Cart"  class="cartDiv"/></a> 
-                                     <!-- <input type="button" value="Remove from Cart"  border="2px" class="cartDiv"/>-->
-                                  </pre>
+                             <?php echo '<img src="images/'.$item->imageName.'" alt="'.$item->imageName.'">';?>
+                              <pre class="imgDescription">
+                                 <?php echo '<p class="imgText"><strong><b>' .$general->title.'</strong></b><br>'.$general->isbn.'<br><span class="money" >R ' .$item->price.
+                                  '</span><br>' .$item->bookCondition. '<br>' .$item->status. '<br>' .$item->ownerUsername.'<br>' .$general->description.'</p><br><br><br>'  ?>
+                                 <a href="index.php?id=<?php echo $item->id; ?>"><input  type="button" name="addTocart" value="Add to Cart"  class="cartDiv"/></a> 
+                              </pre>
                             </div><br>
                           </div>
                      </div>
@@ -64,24 +69,23 @@
             ?>
        </div>
       <div class="shoppingCartDiv">
-
         <form action="#" id="cart_form" name="cart_form">
           <table>
             <tr >
             <thead>
               <th>Price</th>
-              <th>Qu</th>
+              <th>Qty</th>
               <th>Title</th>
               <th></th>
-              </thead>
+            </thead>
             </tr>
               <?php cart(); ?>             
           </table>
           <div class="cart-total">
-          <b>Total Charges:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> R<span>&nbsp;&nbsp;0</span>
+          <b>Total Charges:&nbsp;</b> R <span><?php totalCharges(); ?></span>
           </div>
     
-    <button type="submit" class="checkOut" id="Submit">CheckOut</button>
+    <a href="cart.php?CheckOut"><button type="button" name="CheckOut"class="checkOut">CheckOut</button></a>
     
     </form>
 
