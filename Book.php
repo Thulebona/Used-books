@@ -9,8 +9,6 @@
 		 private $price =0;
 		 private $totalPrice=0;
 
-
-
 		function setBookID($id){
 			$this->id = $id;
 		}

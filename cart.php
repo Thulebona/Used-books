@@ -1,6 +1,5 @@
 <?php
   session_start();
-  //session_destroy();
   $page ='index.php';
   require 'Book.php';
   require 'connector.php';
@@ -68,7 +67,11 @@
          }
         }
      header('Location:'.$page);//back to index
-
+  }
+  if(isset($_GET['clear'])){
+     if(!isset($_SESSION['book'])){$_SESSION['book'] = array();}
+     else{$_SESSION['book'] = array();}
+      header('Location:'.$page);//back to index
   }
   function totalCharges(){
     if(!isset($_SESSION['book'])){$_SESSION['book'] = array();}
@@ -79,12 +82,20 @@
      }
     echo $sum; 
   }
+  function clear(){
+    if(!isset($_SESSION['book'])){$_SESSION['book'] = array();}
+     $cart = unserialize(serialize($_SESSION['book']));
+     for ($i=0; $i <count($cart); $i++){ 
+      if($i>-1){
+        echo '<a href="cart.php?clear"><button type="button" name="clear"class="clear">Clear Cart</button></a>';
+        break;
+        }
+    }
+  }
  
   function cart()
   {
     global $index;
-    include 'connector.php';
-
     if(!isset($_SESSION['book'])){$_SESSION['book'] = array();}
      $cart = unserialize(serialize($_SESSION['book']));
      for ($i=0; $i <count($cart); $i++) { 

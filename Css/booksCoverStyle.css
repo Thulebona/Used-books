@@ -129,10 +129,25 @@ table{
     font-family: "LubalGraphBdBTBold",Tahoma;
     font-size: 1.1em;
     margin-right: -14px;
-    padding: 10px;
+    padding: 8px;
     cursor: pointer;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     box-shadow: 5px 5px 12px #FFCC99;
     border-radius: 8px;
+}
+.clear{
+    background: none repeat scroll 0 0 #AD7B05;
+    color: #FFFFFF;
+    border: medium none;
+    font-family: "LubalGraphBdBTBold",Tahoma;
+    font-size: 1.1em;
+    margin-left: 16px;
+    padding: 8px;
+    cursor: pointer;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    box-shadow: 5px 5px 12px #FFCC99;
+    border-radius: 8px;
+
 }

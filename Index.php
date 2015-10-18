@@ -25,7 +25,6 @@
     $resultGeneral = mysqli_query($con,'SELECT * FROM bookgeneral');
   }
 ?>
-
 <!doctype html>
 <html>
 <head>
@@ -82,16 +81,12 @@
               <?php cart(); ?>             
           </table>
           <div class="cart-total">
-          <b>Total Charges:&nbsp;</b> R <span><?php totalCharges(); ?></span>
+          <b>Total Charges:&nbsp;&nbsp;</b> R <span><?php totalCharges(); ?></span>
           </div>
-    
-    <a href="cart.php?CheckOut"><button type="button" name="CheckOut"class="checkOut">CheckOut</button></a>
-    
-    </form>
-
+          <a href="cart.php?CheckOut"><button type="button" name="CheckOut"class="checkOut">CheckOut</button></a>
+         <?php clear(); ?>
+        </form>
       </div>
   </div>
-
-
 </body>
 </html>
