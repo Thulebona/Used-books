@@ -123,14 +123,6 @@
 			    }
 			}
 			 
-			 //copy image to directory
-			$info = pathinfo($_FILES['datafile']['name']);
-	 		$ext = $info['extension']; // get the extension of the file
-	 		$newname = $_POST['isbn'].".".$ext; 
-
-	 		$target = 'images/'.$newname;
-	 		move_uploaded_file( $_FILES['datafile']['tmp_name'], $target);
-
 	 		$username = getLoggedInUsername();
 
 	 		error_log('SPECIFIC INSERT RUNNING. VALUES:', 0);
@@ -139,12 +131,11 @@
 			error_log('price: '.$_POST['title'], 0);
 			error_log('condition: '.$_POST['description'], 0);
 			error_log('username: '.$username, 0);
-			error_log('image name: '.$newname, 0);
 
 			if($_FILES['datafile']['error'] === UPLOAD_ERR_OK)
 			{
 
-				$specificSQL = 'INSERT INTO bookspecific (isbn, price, bookCondition, status, ownerUsername, imageName) '.'VALUES("'.$_POST['isbn'].'",'.$_POST['price'].',"'.$_POST['condition'].'","available","'.$username.'","'.$newname.'");';
+				$specificSQL = 'INSERT INTO bookspecific (isbn, price, bookCondition, status, ownerUsername, imageName) '.'VALUES("'.$_POST['isbn'].'",'.$_POST['price'].',"'.$_POST['condition'].'","available","'.$username.'","'.'tempValue'.'");';
 
 			 	error_log('SPECIFIC SQL: '.$specificSQL, 0);
 
@@ -153,6 +144,34 @@
 			 	{
 			 		error_log('Error: Insert into bookspecific failed.', 0);
 			 		return false;
+			 	}
+			 	else // load final image with specific ID as name
+			 	{
+
+			 		//get id for specific
+					$id = $con->insert_id;
+					if(!$id)
+					{
+						error_log('Error: Previous insert id is undefined!', 0);
+						return false;
+					}
+
+			 		//copy image to directory
+					$info = pathinfo($_FILES['datafile']['name']);
+	 				$ext = $info['extension']; // get the extension of the file
+	 				$newname = strval($id).".".$ext; 
+
+	 				//update temp value
+	 				$updateSQL = 'UPDATE bookspecific SET imageName= "'.$newname.'" WHERE id = '.strval($id).';';
+					if(!mysqli_query($con, $updateSQL))
+			 		{
+			 			error_log('Error: Update imagename of bookspecific failed.', 0);
+			 			return false;
+			 		}
+
+
+	 				$target = 'images/'.$newname;
+	 				move_uploaded_file( $_FILES['datafile']['tmp_name'], $target);
 			 	}
 			}
 			else
