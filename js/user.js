@@ -65,6 +65,9 @@ function logout()
           "Password:"+
           "<input id = 'passwordInput' type='password' maxlength='30' value=''/>"+
           "<button id = 'buttonLogin'>  Login </button>"+
+          "<form id = 'signUpForm' action='signup.php'>"+
+              "<input type='submit' value='Sign Up'>"+
+          "</form>"+
         "</div>";
 
         document.getElementById("buttonLogin").addEventListener("click", login);

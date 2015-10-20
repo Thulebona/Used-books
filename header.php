@@ -35,6 +35,9 @@ function genUserBar()
 					Password:
 					<input id = 'passwordInput' type='password' maxlength='30' value=''/>
 					<button id = 'buttonLogin' onclick='login()'>  Login </button>
+					<form id = "signUpForm" action="signup.php">
+    					<input type="submit" value="Sign Up">
+					</form>
 				</div>
 			</div>
 		<?php
