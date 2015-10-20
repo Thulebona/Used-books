@@ -19,7 +19,9 @@ function servePage()
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
 		<link rel="stylesheet" type="text/css" href="css/navBar.css">
 		<link rel="stylesheet" type="text/css" href="css/loginBar.css">
-			<link rel="stylesheet" type="text/css" href="css/myBooks.css">
+		<link rel="stylesheet" type="text/css" href="css/myBooks.css">
+
+		<script src="js/mybooks.js"></script>
 	</head>
 	<body>
 
@@ -54,6 +56,7 @@ function genBody()
     		<th class = "tableElement">Asking Price</th> 
     		<th class = "tableElement">Condition</th>
     		<th class = "tableElement">Status</th>
+    		<th class = "tableElement">Operations</th>
     		<th class = "tableElementLast">Picture</th>
  		  </tr>
 	<?php
@@ -108,14 +111,20 @@ function genBody()
 							$email = $client->email;
 							$phone = $client->phone;
 
-							echo '<td class = "tableElement">'.$book->status.'</br>By '.$name. ' '.$lname.'</br>'.'Email: '.$email.'</br>Telephone: '.$phone.'</td>'; 
+							echo '<td class = "tableElement">'
+							.$book->status.'</br>By '.$name. ' '.$lname.'</br>'.'Email: '.$email.'</br>Telephone: '.$phone.
+							'</td>'; 
+
+							echo '<td class = "tableElement"><button onclick = "deleteBook('.$book->id.')">Delete</button><br><button onclick = "unreserveBook('.$book->id.')">Unreserve</button></td>'; 
 						}
 					}
 				}
 				else
 				{
 					echo '<td class = "tableElement">'.$book->status.'</td>'; 
+					echo '<td class = "tableElement"><button onclick = "deleteBook('.$book->id.')">Delete</button></td>'; 
 				}
+				
 				echo '<td class = "tableElementLast"> <img class = "imgTable" src = images/'.$book->imageName.'></img></td>'; 
 				echo '</tr>';	
 		}
