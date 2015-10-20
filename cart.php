@@ -59,7 +59,7 @@
        for ($i=0; $i <count($cart); $i++) { 
         if($i>-1){
             $sql ="UPDATE bookspecific SET status='reserved' WHERE id='".$cart[$i]->getBookID()."'";
-            $order ='INSERT INTO orders values("'.$cart[$i]->getUsername().'","'.$cart[$i]->getBookID().'");';
+            $order ='INSERT INTO orders values("'.getUsername().'","'.$cart[$i]->getBookID().'");';
             if ($con->query($sql) === TRUE) {
                 $con->query($order);
                 $_SESSION['book'] = array();
@@ -107,6 +107,15 @@
        echo '</tr>';
       $index++;
      }
+  }
+
+  function getUsername()
+  {
+    if (isset($_SESSION['username']))
+    {
+      return $_SESSION['username'];
+    }
+    else return false;
   }
 
 ?> 

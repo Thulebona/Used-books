@@ -81,7 +81,41 @@ function genBody()
 
 				echo '<td class = "tableElement">'.$book->price.'</td>'; 
 				echo '<td class = "tableElement">'.$book->bookCondition.'</td>'; 
-				echo '<td class = "tableElement">'.$book->status.'</td>'; 
+				if($book->status == 'reserved')
+				{
+
+					$orderSQL = 'SELECT * FROM orders WHERE bookId="'.$book->id.'"';
+					$orders = mysqli_query($con, $orderSQL);
+					if(!$orders)
+					{
+						error_log('ERROR: '.$orderSQL.'" failed to exetute', 0);
+					}
+					$order = mysqli_fetch_object($orders); 
+					error_log('clientUsername:'.$order->clientUsername, 0);
+					$clientSQL = 'SELECT username, name, lastName, email, phone FROM client WHERE username ="'.$order->clientUsername.'";';
+					$clients = mysqli_query($con, $clientSQL);
+					if(!$clients)
+					{
+						error_log('ERROR: "'.$clientSQL.'" failed to exetute', 0);
+					}
+
+					while($client = mysqli_fetch_object($clients))
+					{
+						if($client->username == $order->clientUsername)
+						{
+							$name = $client->name;
+							$lname = $client->lastName;
+							$email = $client->email;
+							$phone = $client->phone;
+
+							echo '<td class = "tableElement">'.$book->status.'</br>By '.$name. ' '.$lname.'</br>'.'Email: '.$email.'</br>Telephone: '.$phone.'</td>'; 
+						}
+					}
+				}
+				else
+				{
+					echo '<td class = "tableElement">'.$book->status.'</td>'; 
+				}
 				echo '<td class = "tableElementLast"> <img class = "imgTable" src = images/'.$book->imageName.'></img></td>'; 
 				echo '</tr>';	
 		}
