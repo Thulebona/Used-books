@@ -2,16 +2,19 @@
 	session_start();
 	require 'header.php';
 
-	if(isset($_POST['delete']))
+	if(isset($_POST['delete'])&& isset($_POST['bookId']))
 	{
-
+		error_log("DELETE BEFORE FUNC", 0);
+		deleteBook();
 	}
-	else if(isset($_POST['unreserve']))
+	else if(isset($_POST['unreserve']) && isset($_POST['bookId']))
 	{
-
+			error_log("UNRESERVE BEFORE FUNC", 0);
+		unreserveBook();
 	}
     else
     {
+    	error_log("NO POST VARS DEFAULT SERVING", 0);
     	servePage();
     }
 	
@@ -59,7 +62,7 @@ function genBody()
 
 	?>
 		<div class = 'outerDiv'>
-		<table class = 'bookTable'>
+		<table id = 'bookTable' class = 'bookTable'>
 		  <tr>
     		<th class = "tableElementFirst">Title</th>
     		<th class = "tableElement">Description</th> 
@@ -80,6 +83,7 @@ function genBody()
 	$specificSQL = 'SELECT * FROM bookspecific WHERE ownerUsername="'.$ownerUsername.'"';
 	$books = mysqli_query($con, $specificSQL);
 	if(!$books){error_log('SPECIFIC QUERY FAILED WITH SQL: '.$specificSQL, 0);}
+	$pos = 0;
 	while($book = mysqli_fetch_object($books))
 	{
 		$generalSQL = 'SELECT * FROM bookgeneral WHERE isbn="'.$book->isbn.'"';
@@ -116,30 +120,32 @@ function genBody()
 
 					while($client = mysqli_fetch_object($clients))
 					{
-						if($client->username == $order->clientUsername)
+						error_log("Client Client username: '".$client->username."'  Order Client Username '". $order->clientUsername."'", 0);
+						if(trim($client->username) === trim($order->clientUsername))
 						{
+
 							$name = $client->name;
 							$lname = $client->lastName;
 							$email = $client->email;
 							$phone = $client->phone;
 
-							echo '<td class = "tableElement">'
-							.$book->status.'</br>By '.$name. ' '.$lname.'</br>'.'Email: '.$email.'</br>Telephone: '.$phone.
-							'</td>'; 
+							echo '<td class = "tableElement">'.$book->status.'</br>By '.$name. ' '.$lname.'</br>'.'Email: '.$email.'</br>Telephone: '.$phone.'</td>'; 
 
-							echo '<td class = "tableElement"><button onclick = "deleteBook('.$book->id.')">Delete</button><br><button onclick = "unreserveBook('.$book->id.')">Unreserve</button></td>'; 
+							echo '<td class = "tableElement"><button onclick = "deleteBook('.$book->id.','.$pos.')">Delete</button><br><button onclick = "unreserveBook('.$book->id.','.$pos.')">Unreserve</button></td>'; 
 						}
 					}
 				}
 				else
 				{
 					echo '<td class = "tableElement">'.$book->status.'</td>'; 
-					echo '<td class = "tableElement"><button onclick = "deleteBook('.$book->id.')">Delete</button></td>'; 
+					echo '<td class = "tableElement"><button onclick = "deleteBook('.$book->id.','.$pos.')">Delete</button></td>'; 
 				}
 				
 				echo '<td class = "tableElementLast"> <img class = "imgTable" src = images/'.$book->imageName.'></img></td>'; 
 				echo '</tr>';	
 		}
+
+		$pos = $pos + 1;
 	}
 	?>
 		</table>
@@ -147,14 +153,56 @@ function genBody()
 	<?php
 }
 
-function unreserveBook($bookId)
+function unreserveBook()
 {
+	require 'connector.php';
 
+	$bookId = $_POST['bookId'];
+
+	$orderSQL = 'DELETE FROM orders WHERE bookid='.$bookId.';';
+	$s = mysqli_query($con, $orderSQL);
+	if(!$s)
+	{
+		error_log('ERROR: DELETE BOOK QUERY FAILED WITH SQL: '.$orderSQL, 0);
+		http_response_code(400);
+	} 
+
+
+	$sql = "UPDATE bookspecific SET status = 'available' WHERE id=".$bookId.";";
+	$booksg = mysqli_query($con, $sql);
+	if(!$booksg)
+	{
+		error_log('ERROR: UNRESERVE BOOK QUERY FAILED WITH SQL: '.$sql, 0);
+		http_response_code(400);
+	} 
+
+	http_response_code(200);
 }
 
-function deleteBook($bookId)
+function deleteBook()
 {
-	
+
+	require 'connector.php';
+
+	$bookId = $_POST['bookId'];
+
+	$orderSQL = 'DELETE FROM orders WHERE bookid='.$bookId.';';
+	$s = mysqli_query($con, $orderSQL);
+	if(!$s)
+	{
+		error_log('ERROR: DELETE BOOK QUERY FAILED WITH SQL: '.$orderSQL, 0);
+		http_response_code(400);
+	} 
+
+	$specificSQL = 'DELETE FROM bookspecific WHERE id='.$bookId.';';
+	$s = mysqli_query($con, $specificSQL);
+	if(!$s)
+	{
+		error_log('ERROR: DELETE BOOK QUERY FAILED WITH SQL: '.$specificSQL, 0);
+		http_response_code(400);
+	} 
+
+	http_response_code(200);
 }
 
 
