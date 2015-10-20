@@ -1,5 +1,6 @@
 <?php
   session_start();
+  //session_destroy();
   $page ='index.php';
   require 'Book.php';
   require 'connector.php';
@@ -45,6 +46,38 @@
               }
             }
   }
+
+  function getRemoveBtn($id,$isbn){
+     if(!isset($_SESSION['book'])){$_SESSION['book'] = array();}
+     $cart = unserialize(serialize($_SESSION['book']));
+     for ($i=0; $i <count($cart); $i++) {
+          if($cart[$i]->getBookID()==$id) { 
+          echo '<a href="cart.php?remove='.$id.'"><input  type="button" name="removeFromCart" value="Remove from Cart"  class="cartDiv"/></a>';
+          $i=count($cart);
+        }
+     }
+    // header('Location:'.$page);//back to index
+  }
+
+  if(isset($_GET['remove'])){
+    if(!isset($_SESSION['book'])){$_SESSION['book'] = array();}
+    $cart = unserialize(serialize($_SESSION['book'])); 
+    for ($i=0; $i <count($cart) ; $i++) { 
+         if($cart[$i]->getQuantity()==1){ 
+          unset($cart[$i]);
+          $cart = array_values($cart);
+          }  else{
+            $cart[$i]->setQuantity($cart[$i]->getQuantity()-1);
+           // $cart[$i]->setBookPrice($cart[$i]->getBookPrice());
+            $cart[$i]->setBookTotPrice($cart[$i]->getBookTotPrice()-$cart[$i]->getBookPrice());
+          }
+          $_SESSION['book']=$cart;
+
+    }
+     header('Location:'.$page);//back to index
+  }
+
+
   if (isset($_GET['delete'])){
      $cart = unserialize(serialize($_SESSION['book']));
      for ($i=0; $i <count($cart); $i++) { 
@@ -58,7 +91,7 @@
        $cart = unserialize(serialize($_SESSION['book']));
        for ($i=0; $i <count($cart); $i++) { 
         if($i>-1){
-            $sql ="UPDATE bookspecific SET status='reserved' WHERE id='".$cart[$i]->getBookID()."'";
+            $sql   ="UPDATE bookspecific SET status='reserved' WHERE id='".$cart[$i]->getBookID()."'";
             $order ='INSERT INTO orders values("'.getUsername().'","'.$cart[$i]->getBookID().'");';
             if ($con->query($sql) === TRUE) {
                 $con->query($order);
@@ -92,7 +125,6 @@
         }
     }
   }
- 
   function cart()
   {
     global $index;

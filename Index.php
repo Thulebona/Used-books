@@ -55,8 +55,9 @@
                              <?php echo '<img src="images/'.$item->imageName.'" alt="'.$item->imageName.'">';?>
                               <pre class="imgDescription">
                                  <?php echo '<p class="imgText"><strong><b>' .$general->title.'</strong></b><br>'.$general->isbn.'<br><span class="money" >R ' .$item->price.
-                                  '</span><br>' .$item->bookCondition. '<br>' .$item->status. '<br>' .$item->ownerUsername.'<br>' .$general->description.'</p><br><br><br>'  ?>
-                                 <a href="index.php?id=<?php echo $item->id; ?>"><input  type="button" name="addTocart" value="Add to Cart"  class="cartDiv"/></a> 
+                                   '</span><br>' .$item->bookCondition. '<br>' .$item->status. '<br>' .$item->ownerUsername.'<br>' .$general->description.'</p><br><br>'  ?>
+                                   <a href="index.php?id=<?php echo $item->id; ?>"><input  type="button" name="addTocart" value="Add to Cart"  class="cartDiv"/></a> 
+                                   <?php  getRemoveBtn($item->id,$general->isbn); ?>
                               </pre>
                             </div><br>
                           </div>
