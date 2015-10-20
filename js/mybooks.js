@@ -7,7 +7,7 @@ function unreserveBook(bookId)
   	request.open('POST', 'mybooks.php', true);
 
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  	//request.send('action=unreserve');
+  request.send('action=unreserve&bookId=' + bookId);
 
   request.onload = function (e) 
   {
@@ -30,7 +30,7 @@ function deleteBook(bookId)
   	request.open('POST', 'mybooks.php', true);
 
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  	//request.send('action=delete');
+  request.send('action=delete&bookId=' + bookId);
 
   	request.onload = function (e) 
   	{

@@ -2,7 +2,19 @@
 	session_start();
 	require 'header.php';
 
-	servePage();
+	if(isset($_POST['delete']))
+	{
+
+	}
+	else if(isset($_POST['unreserve']))
+	{
+
+	}
+    else
+    {
+    	servePage();
+    }
+	
 ?>
 
 <?php
@@ -133,6 +145,16 @@ function genBody()
 		</table>
 		</div>
 	<?php
+}
+
+function unreserveBook($bookId)
+{
+
+}
+
+function deleteBook($bookId)
+{
+	
 }
 
 
