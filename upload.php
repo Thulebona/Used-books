@@ -84,7 +84,7 @@
 		<input class = "uploadFormItem" type = "text" name = "price"><br><br>
 
 		<label for="datafile">Image</label> <br>
-		<input class = "uploadFormItem" type="file" name="datafile" size="40"><br><br>
+		<input class = "uploadFormItem" type="file" id = 'datafile' name="datafile" size="40"><br><br>
 
 		<br>
 		<button class = "uploadFormButton" id = "uploadButton" onclick = "return validateUpload(this)">Upload</button>
